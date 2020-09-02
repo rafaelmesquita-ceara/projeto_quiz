@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 main(){
-  runApp(new PerguntApp());
+  runApp(new PerguntaApp());
 }
 
-class PerguntApp extends StatelessWidget{
+class PerguntaAppState extends State<PerguntaApp>{
+  final perguntas = [
+      'Qual é a sua cor favorita?',
+      'Qual é o seu animal favorito?'
+    ];
 
+  var perguntaSelecionada = 0;
   void responder(){
-    print('Pergunta respondida!');
+    setState(() {
+      perguntaSelecionada < perguntas.length - 1 ? perguntaSelecionada++ : null;
+    });
   }
 
-  final perguntas = [
-    'Qual é a sua cor favorita?',
-    'Qual é o seu animal favorito?'
-  ];
-
   Widget build(BuildContext context){
+    
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -23,7 +27,7 @@ class PerguntApp extends StatelessWidget{
         ),
         body: Column(
           children: [
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             RaisedButton(
               child: Text('Resposta 1'),
               onPressed: () => responder(),
@@ -41,4 +45,12 @@ class PerguntApp extends StatelessWidget{
       ),
     );
   }
+}
+
+class PerguntaApp extends StatefulWidget{
+
+  PerguntaAppState createState() {
+    return PerguntaAppState();
+  }
+  
 }
