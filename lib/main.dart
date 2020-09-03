@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import './resultado.dart';
+import './questionario.dart';
 main(){
   runApp(new PerguntaApp());
 }
@@ -39,19 +39,8 @@ class _PerguntaAppState extends State<PerguntaApp>{
           title: Text('Perguntas'),
         ),
         body:  _finalizou?  
-        Center(
-          child : Text(
-            'Parabéns!',
-            style: TextStyle(fontSize: 28)
-          )
-        )
-        : 
-        Column(
-          children: [
-            Questao(perguntas[_perguntaSelecionada]['texto']),
-            ...respostas.map((e) => Resposta(e, _responder)),
-          ],
-        ),
+        Resultado() : Questionario(perguntas, _perguntaSelecionada, respostas, _responder)
+        
       ),
     );
   }
