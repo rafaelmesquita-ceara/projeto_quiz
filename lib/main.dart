@@ -22,29 +22,34 @@ class _PerguntaAppState extends State<PerguntaApp>{
     ];
 
   var _perguntaSelecionada = 0;
+  bool _finalizou = false;
   void _responder(){
     setState(() {
-      if (_perguntaSelecionada < perguntas.length-1) _perguntaSelecionada++;
+      _perguntaSelecionada < perguntas.length-1 ? _perguntaSelecionada++ : _finalizou = true;
     });
   }
 
   Widget build(BuildContext context){
     
-    List<Widget> respostas = [];
-
-    for(var textoResp in perguntas[_perguntaSelecionada]['respostas']){
-      respostas.add(Resposta(textoResp, _responder));
-    }
+    List<String> respostas = perguntas[_perguntaSelecionada]['respostas'];
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
-        body: Column(
+        body:  _finalizou?  
+        Center(
+          child : Text(
+            'Parabéns!',
+            style: TextStyle(fontSize: 28)
+          )
+        )
+        : 
+        Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto']),
-            ...respostas,
+            ...respostas.map((e) => Resposta(e, _responder)),
           ],
         ),
       ),
