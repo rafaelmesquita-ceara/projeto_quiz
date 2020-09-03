@@ -39,6 +39,14 @@ class _PerguntaAppState extends State<PerguntaApp>{
     print('Acertos: $_acertos');
   }
 
+  void _reiniciaQuestionario(){
+    setState(() {
+      _perguntaSelecionada = 0;
+      _acertos = 0;
+      _finalizou = false;
+    });
+  }
+
   Widget build(BuildContext context){
     return MaterialApp(
       home: Scaffold(
@@ -46,7 +54,7 @@ class _PerguntaAppState extends State<PerguntaApp>{
           title: Text('Perguntas'),
         ),
         body:  _finalizou?  
-        Resultado(_acertos, perguntas.length) : Questionario(perguntas, _perguntaSelecionada, (e) => _responder(e))
+        Resultado(_acertos, perguntas.length, _reiniciaQuestionario) : Questionario(perguntas, _perguntaSelecionada, (e) => _responder(e))
       ),
     );
   }
