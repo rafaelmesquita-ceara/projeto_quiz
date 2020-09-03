@@ -4,16 +4,16 @@ main(){
   runApp(new PerguntaApp());
 }
 
-class PerguntaAppState extends State<PerguntaApp>{
+class _PerguntaAppState extends State<PerguntaApp>{
   final perguntas = [
       'Qual é a sua cor favorita?',
       'Qual é o seu animal favorito?'
     ];
 
-  var perguntaSelecionada = 0;
-  void responder(){
+  var _perguntaSelecionada = 0;
+  void _responder(){
     setState(() {
-      perguntaSelecionada < perguntas.length - 1 ? perguntaSelecionada++ : null;
+      if (_perguntaSelecionada < perguntas.length-1) _perguntaSelecionada++;
     });
   }
 
@@ -27,18 +27,18 @@ class PerguntaAppState extends State<PerguntaApp>{
         ),
         body: Column(
           children: [
-            Text(perguntas[perguntaSelecionada]),
+            Text(perguntas[_perguntaSelecionada]),
             RaisedButton(
               child: Text('Resposta 1'),
-              onPressed: () => responder(),
+              onPressed: () => _responder(),
             ),
             RaisedButton(
               child: Text('Resposta 2'),
-              onPressed: () => responder(),
+              onPressed: () => _responder(),
             ),
             RaisedButton(
               child: Text('Resposta 3'),
-              onPressed: () => responder(),
+              onPressed: () => _responder(),
             )
           ],
         ),
@@ -49,8 +49,8 @@ class PerguntaAppState extends State<PerguntaApp>{
 
 class PerguntaApp extends StatefulWidget{
 
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
   
 }
