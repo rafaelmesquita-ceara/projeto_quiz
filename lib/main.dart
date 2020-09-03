@@ -7,8 +7,18 @@ main(){
 
 class _PerguntaAppState extends State<PerguntaApp>{
   final perguntas = [
-      'Qual é a sua cor favorita?',
-      'Qual é o seu animal favorito?'
+      {
+        'texto' : 'Qual é sua cor favorita?',
+        'respostas' : ['Preto', 'Vermelho', 'Verde', 'Branco']
+      },
+      {
+        'texto' : 'Qual é o seu animal favorito?',
+        'respostas' : ['Coelho', 'Cobra', 'Elefante', 'Leão']
+      },
+      {
+        'texto' : 'Qual é o seu instrutor favorito?',
+        'respostas' : ['Maria', 'João', 'Leo', 'Pedro']
+      }
     ];
 
   var _perguntaSelecionada = 0;
@@ -28,7 +38,7 @@ class _PerguntaAppState extends State<PerguntaApp>{
         ),
         body: Column(
           children: [
-            Questao(perguntas[_perguntaSelecionada]),
+            Questao(perguntas[_perguntaSelecionada]['texto']),
             Resposta('Resposta 1', _responder),
             Resposta('Resposta 2', _responder),
             Resposta('Resposta 3', _responder)
